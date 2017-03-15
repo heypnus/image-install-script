@@ -31,26 +31,26 @@ echo "GSSAPIAuthentication no" >> /etc/ssh/sshd_config
 echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
-ls /etc/qemu-ga
-ls /etc/qemu-ga/fsfreeze-hook.d
-mkdir -p /etc/qemu-ga/fsfreeze-hook.d
-cat -n /etc/qemu-ga/fsfreeze-hook
-wget -O /etc/qemu-ga/fsfreeze-hook https://raw.githubusercontent.com/qemu/qemu/master/scripts/qemu-guest-agent/fsfreeze-hook
-chmod +x /etc/qemu-ga/fsfreeze-hook
+ls /etc/qemu
+ls /etc/qemu/fsfreeze-hook.d
+mkdir -p /etc/qemu/fsfreeze-hook.d
+cat -n /etc/qemu/fsfreeze-hook
+wget -O /etc/qemu/fsfreeze-hook https://raw.githubusercontent.com/qemu/qemu/master/scripts/qemu-guest-agent/fsfreeze-hook
+chmod +x /etc/qemu/fsfreeze-hook
 
-echo '#!/bin/bash' > /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "case \"\$1\" in" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "  freeze)" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "    echo \"I'm frozen\" > /tmp/freeze" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "    ;;" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "  thaw)" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "    bash /etc/qemu-ga/script.sh 2>/etc/qemu-ga/2 1>/etc/qemu-ga/1" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "    ;;" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "  *)" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "    exit 1" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "    ;;" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
-echo "esac" >> /etc/qemu-ga/fsfreeze-hook.d/foo.sh
+echo '#!/bin/bash' > /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "case \"\$1\" in" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "  freeze)" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "    echo \"I'm frozen\" > /tmp/freeze" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "    ;;" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "  thaw)" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "    bash /etc/qemu/script.sh 2>/etc/qemu/2 1>/etc/qemu/1" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "    ;;" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "  *)" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "    exit 1" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "    ;;" >> /etc/qemu/fsfreeze-hook.d/foo.sh
+echo "esac" >> /etc/qemu/fsfreeze-hook.d/foo.sh
 
-chmod +x /etc/qemu-ga/fsfreeze-hook.d -R
+chmod +x /etc/qemu/fsfreeze-hook.d -R
 
-echo 'FSFREEZE_HOOK_PATHNAME=/etc/qemu-ga/fsfreeze-hook' > /etc/sysconfig/qemu-ga
+echo 'FSFREEZE_HOOK_PATHNAME=/etc/qemu/fsfreeze-hook' > /etc/sysconfig/qemu-ga
