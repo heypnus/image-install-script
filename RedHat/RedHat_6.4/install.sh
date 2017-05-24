@@ -73,3 +73,15 @@ echo "esac" >> /etc/qemu/fsfreeze-hook.d/foo.sh
 chmod +x /etc/qemu/fsfreeze-hook.d -R
 
 echo 'FSFREEZE_HOOK_PATHNAME=/etc/qemu/fsfreeze-hook' > /etc/sysconfig/qemu-ga
+
+rm /root/*
+rm /etc/udev/rules.d/70-persistent-net.rules
+rm /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'DEVICE="eth0"' > /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'BOOTPROTO="dhcp"' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'IPV6INIT="yes"' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'NM_CONTROLLED="yes"' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'ONBOOT="yes"' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+echo 'TYPE="Ethernet"' >> /etc/sysconfig/network-scripts/ifcfg-eth0
+
+sed -i 's/write_rule "$match" "$INTERFACE" "$COMMENT"/#write_rule "$match" "$INTERFACE" "$COMMENT"/g' /lib/udev/write_net_rules
