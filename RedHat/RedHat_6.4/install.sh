@@ -85,3 +85,5 @@ echo 'ONBOOT="yes"' >> /etc/sysconfig/network-scripts/ifcfg-eth0
 echo 'TYPE="Ethernet"' >> /etc/sysconfig/network-scripts/ifcfg-eth0
 
 sed -i 's/write_rule "$match" "$INTERFACE" "$COMMENT"/#write_rule "$match" "$INTERFACE" "$COMMENT"/g' /lib/udev/write_net_rules
+
+echo 'qemu-ga -d -F/etc/qemu/fsfreeze-hook' >> /etc/rc.local
