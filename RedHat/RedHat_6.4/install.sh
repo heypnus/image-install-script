@@ -24,7 +24,7 @@ chkconfig sshd on
 systemctl enable sshd.service
 # conflicts with file from package redhat-rpm-config-9.1.0-68.el7.centos.noarch
 #yum -y install http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-# yum -y install cloud-init
+yum -y install cloud-init
 
 echo "NOZEROCONF=yes" >> /etc/sysconfig/network
 
